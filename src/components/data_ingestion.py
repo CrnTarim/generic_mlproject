@@ -24,8 +24,8 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         try:
             df = pd.read_csv('notebook/data/stud.csv')  # Load dataset
-            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
-
+            
+            os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)# dosya yolunu kontrol et
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)  # Save raw data
             
             logging.info("Train-test split completed successfully")
@@ -36,7 +36,7 @@ class DataIngestion:
 
             logging.info("Ingestion of data is cpmleted")
             
-            return self.ingestion_config.train_data_path, self.ingestion_config.test_data_path
+            return self.ingestion_config.train_data_path, self.ingestion_config.test_data_path # return paths
 
         except Exception as e:
             raise CustomException(e, sys)
